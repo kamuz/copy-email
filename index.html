@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Copy email to clipboard</title>
+    <style type="text/css">
+    body {
+        font-family: Segoe UI, Helvetica, Arial, sans-serif;
+    }
+    </style>
+</head>
+
+<body>
+    <h1>Copy email to clipboard</h1>
+    <a href="#" id="your-email">v.kamuz@gmail.com</a>
+    <button id="copy-email-btn">Copy text</button>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+    function handleCopyTextFromParagraph() {
+        const body = document.querySelector('body');
+        const email = document.getElementById('your-email');
+        const area = document.createElement('textarea');
+        body.appendChild(area);
+        area.value = email.innerText;
+        area.select();
+        document.execCommand('copy');
+        body.removeChild(area);
+        Swal.fire({
+            position: 'center',
+            icon: 'success',
+            title: 'Email was copied',
+            showConfirmButton: false,
+            timer: 1500
+        })
+    }
+    document.getElementById("copy-email-btn").addEventListener("click", handleCopyTextFromParagraph);
+    </script>
+</body>
+
+</html>
